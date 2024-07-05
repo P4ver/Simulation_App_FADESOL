@@ -44,16 +44,7 @@ const Echelle = () => {
       ],
       hourOptions: Array.from({ length: 24 }, (_, i) => `${i + 1}h`) // Generates "1h" to "24h"
     },
-    {
-      puissance: '60',
-      hour: '3',
-      puissanceOptions: [
-        { label: 'refrigerateur 20w', value: '20' },
-        { label: 'refrigerateur 30w', value: '30' },
-        { label: 'refrigerateur 40w', value: '40' }
-      ],
-      hourOptions: Array.from({ length: 24 }, (_, i) => `${i + 1}h`) // Generates "1h" to "24h"
-    },
+  
     // Add more random choices as needed
   ];
 
