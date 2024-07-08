@@ -8,8 +8,9 @@ import mediumConsumptionImage from './kit-solaire-115w.jpg'; // Image for result
 import highConsumptionImage from './kit-solaire-175w.jpg'; //mage for result between 150 and 200
 import { Bar } from 'react-chartjs-2';
 import { TiDelete } from "react-icons/ti";
-
-
+import diswatt from './diswatt.png'
+import plan_kit_solaire from './plan_kit_solaire.png'
+import { FaArrowCircleDown } from "react-icons/fa";
 
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 
@@ -144,7 +145,26 @@ const Echelle = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 border max-w-5xl mt-10">
+    <div className="container mx-auto p-4 border rounded-lg  max-w-5xl mt-10">
+        <div className='border rounded-lg my-5 p-4 flex justify-between items-center'>
+          <a href="https://www.diswatt.ma/">
+            <img src={diswatt} alt="" className=''/>
+          </a>
+          <div className='flex flex-col justify-center items-center hover:bg-blue-100  rounded-xl p-2'>
+            <a href="https://www.diswatt.ma/product-category/kit-solaire">
+              <img src={plan_kit_solaire} alt="" className='w-20'/>
+            <p className='text-xl font-semibold'>kit solaire</p>
+            </a>
+          </div>
+        </div>
+        <div className='flex items-center'>
+          <p className='px-2 py-5 text-xl'>
+            Calculez votre consommation en sélectionnat des appareils 
+          </p>
+          <div className='text-blue-700 text-xl'>
+            <FaArrowCircleDown />
+          </div>
+        </div>
       <div className="flex space-x-4 mb-4">
         {randomChoices.map((choice, index) => (
           <img
