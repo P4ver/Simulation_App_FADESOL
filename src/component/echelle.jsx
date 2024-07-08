@@ -163,7 +163,8 @@ const Echelle = () => {
       </div>
 
       {rows.length > 0 && rows.map((row, index) => (
-        <div key={index} className="flex items-center  justify-between space-x-4 mt-4">
+        // <div key={index} className="flex items-center  justify-between space-x-4 mt-4">
+        <div key={index} className={`flex items-center justify-between space-x-4  ${index % 2 === 0 ? 'bg-gray-100' : 'bg-slate-50'}`}>
           <div className='flex justify-center items-center'>          
             {row.image && (
               <img
@@ -172,26 +173,28 @@ const Echelle = () => {
                 className="w-16 h-16"
               />
             )}
+
             <input
               type="text" // Use type text to allow numeric input and handle validation
               value={row.quantite}
               onChange={(e) => handleQuantiteChange(e.target.value, index)}
-              placeholder="Quantite"
-              className="border p-2 rounded mr-1"
-            />
+              placeholder="Qte"
+              className="border p-2 rounded mr-1 w-12"
+              />
+
             {row.isCustom ? (
               <input
                 type="text" // Make puissance editable
                 value={row.puissance}
                 onChange={(e) => handlePuissanceChange(e.target.value, index)}
                 placeholder="Puissance"
-                className="border p-2 rounded mr-1"
+                className="border p-2 rounded mr-1 w-32"
               />
             ) : (
               <select
                 value={row.puissance} // Set value to row.puissance
                 onChange={(e) => handlePuissanceChange(e.target.value, index)}
-                className="border p-2 rounded mr-1"
+                className="border p-2 rounded mr-1 w-56"
               >
                 <option value="">Select Puissance</option>
                 {row.puissanceOptions.map((option, idx) => (
