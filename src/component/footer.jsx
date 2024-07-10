@@ -30,7 +30,7 @@ const Footer = () => {
       </div>
     </div>
     <div class="">
-      <div class="mt-4 mb-2 font-bold xl:mb-4">Menu</div>
+      <div class="mt-4 mb-2 font-bold text-lg  xl:mb-4">Menu</div>
       <nav aria-label="Footer Navigation" class="text-gray-500">
         <ul class="space-y-3">
           <li><a class="hover:text-blue-600 hover:underline" href="https://www.diswatt.ma/" target='_blank'>Accueil</a></li>
