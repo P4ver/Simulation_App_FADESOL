@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import lamp from './lamp.jpg';
-import lcd from './lcd.png';
-import box from './box.png';
-import refrigerateur from './refrigerateur.jpg';
-import lowConsumptionImage from './kit-solaire-90w.jpg'; // Image for result < 90
-import mediumConsumptionImage from './kit-solaire-115w.jpg'; // Image for result between 90 and 150
-import highConsumptionImage from './kit-solaire-175w.jpg'; //mage for result between 150 and 200
+import lamp from './style/lamp.jpg';
+import lcd from './style/lcd.png';
+import box from './style/box.png';
+import refrigerateur from './style/refrigerateur.jpg';
+import lowConsumptionImage from './style/kit-solaire-90w.jpg'; // Image for result < 90
+import mediumConsumptionImage from './style/kit-solaire-115w.jpg'; // Image for result between 90 and 150
+import highConsumptionImage from './style/kit-solaire-175w.jpg'; //mage for result between 150 and 200
 import { Bar } from 'react-chartjs-2';
 import { TiDelete } from "react-icons/ti";
-import diswatt from './diswatt.png'
-import plan_kit_solaire from './plan_kit_solaire.png'
+import diswatt from './style/diswatt.png'
+import plan_kit_solaire from './style/plan_kit_solaire.png'
 import { FaArrowCircleDown } from "react-icons/fa";
 
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
@@ -144,18 +144,72 @@ const Echelle = () => {
     }
   };
 
+  //   const options_dropDown = [
+  //     "Kit anti-coupure (hybride)",
+  //     "Kit autoconsommation (On-grid)",
+  //     "Kit autonome (Off-grid)",
+  //     "Kit caméra de surveillance",
+  //     "Kit pompage solaire",
+  //     "Kit solaire Véhicule & Camping-Car"
+  // ];
+
+    const options_dropDown = [
+      { label: "Kit anti-coupure (hybride)", url: "https://www.diswatt.ma/product-category/kit-solaire/kit-anti-coupure" },
+      { label: "Kit autoconsommation (On-grid)", url: "https://www.diswatt.ma/product-category/kit-solaire/kit-autoconsommation" },
+      { label: "Kit autonome (Off-grid)", url: "https://www.diswatt.ma/product-category/kit-solaire/kit-autonome" },
+      { label: "Kit caméra de surveillance", url: "https://www.diswatt.ma/product-category/kit-solaire/kit-camera-surveillance" },
+      { label: "Kit pompage solaire", url: "https://www.diswatt.ma/product-category/kit-solaire/kit-pompage-solaire" },
+      { label: "Kit solaire Véhicule & Camping-Car", url: "https://www.diswatt.ma/product-category/kit-solaire/kit-solaire-vehicule" }
+    ];
+
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [selectedOption, setSelectedOption] = useState("");
+
+    // const handleSelect = (option) => {
+    //     setSelectedOption(option);
+    //     setIsDropdownOpen(false); // Close the dropdown after selection if needed
+    // };
+
+    const handleSelect = (option) => {
+      setSelectedOption(option.label);
+      setIsDropdownOpen(false);
+      window.open(option.url, "_blank"); // Open the URL in a new tab
+    };
   return (
-    <div className="container mx-auto p-4 border rounded-lg  max-w-5xl mt-10">
+    <div className="container mx-auto p-4 border rounded-lg  max-w-7xl mt-10">
         <div className='border rounded-lg my-5 p-4 flex justify-between items-center'>
-          <a href="https://www.diswatt.ma/">
+          <a href="https://www.diswatt.ma/" target="_blank">
             <img src={diswatt} alt="" className=''/>
           </a>
-          <div className='flex flex-col justify-center items-center hover:bg-blue-100  rounded-xl p-2'>
-            <a href="https://www.diswatt.ma/product-category/kit-solaire">
+          {/* <div className='flex flex-col justify-center items-center hover:bg-blue-100  rounded-xl p-2'>
+            <a href="https://www.diswatt.ma/product-category/kit-solaire" target="_blank">
               <img src={plan_kit_solaire} alt="" className='w-20'/>
             <p className='text-xl font-semibold'>kit solaire</p>
             </a>
+          </div> */}
+          <div className='text-blue-800 text-2xl font-bold'>
+            Simulateur de kit solaire
           </div>
+          <div className="relative">
+            <select
+              value={selectedOption}
+              onChange={(e) => handleSelect(options_dropDown.find(opt => opt.label === e.target.value))}
+              className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+            >
+              <option value="">Choisissez un kit Solaire...</option>
+              {options_dropDown.map((option, index) => (
+                <option key={index} value={option.label}>{option.label}</option>
+              ))}
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                <path d="M10 12l-4-4h8z"/>
+              </svg>
+            </div>
+          </div>
+
+
+
         </div>
         <div className='flex items-center'>
           <p className='px-2 py-5 text-xl'>
