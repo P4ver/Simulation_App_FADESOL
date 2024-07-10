@@ -213,7 +213,7 @@ const Echelle = () => {
         </div>
         <div className='flex items-center'>
           <p className='px-2 py-5 text-xl'>
-            Calculez votre consommation en sélectionnat des appareils 
+            Calculez votre consommation en sélectionnant des appareils 
           </p>
           <div className='text-blue-700 text-xl'>
             <FaArrowCircleDown />
