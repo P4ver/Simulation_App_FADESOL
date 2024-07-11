@@ -6,6 +6,7 @@ import refrigerateur from './style/refrigerateur.jpg';
 import lowConsumptionImage from './style/kit-solaire-90w.jpg'; // Image for result < 90
 import mediumConsumptionImage from './style/kit-solaire-115w.jpg'; // Image for result between 90 and 150
 import highConsumptionImage from './style/kit-solaire-175w.jpg'; //mage for result between 150 and 200
+import wattimg from './style/watt-img.png'
 import { Bar } from 'react-chartjs-2';
 import { TiDelete } from "react-icons/ti";
 import diswatt from './style/diswatt.png'
@@ -23,6 +24,7 @@ const Echelle = () => {
     {
       puissance: '40',
       hour: '1',
+      name: "Lamp",
       image: lamp,
       puissanceOptions: [
         { label: 'lamp 10w', value: '10' },
@@ -35,6 +37,7 @@ const Echelle = () => {
     {
       puissance: '20',
       hour: '1',
+      name: "LCD",
       image: lcd,
       puissanceOptions: [
         { label: 'lcd 10w', value: '10' },
@@ -46,6 +49,7 @@ const Echelle = () => {
     {
       puissance: '30',
       hour: '1',
+      name: "Refrigerateur",
       image: refrigerateur,
       puissanceOptions: [
         { label: 'refrigerateur 20w', value: '20' },
@@ -175,6 +179,7 @@ const Echelle = () => {
       setIsDropdownOpen(false);
       window.open(option.url, "_blank"); // Open the URL in a new tab
     };
+    console.log("randomChoices",randomChoices)
   return (
     <div className="container mx-auto p-4 border rounded-lg  max-w-7xl mt-10">
         <div className='border rounded-lg my-5 p-4 flex justify-between items-center'>
@@ -221,19 +226,32 @@ const Echelle = () => {
         </div>
       <div className="flex space-x-4 mb-4">
         {randomChoices.map((choice, index) => (
-          <img
-            key={index}
-            src={choice.image}
-            alt={`Choice ${index + 1}`}
-            onClick={() => handleRandomChoice(choice)}
-            className="cursor-pointer w-16 h-16"
-          />
+          <div className='flex flex-col justify-center items-center'>
+            <img
+              key={index}
+              src={choice.image}
+              alt={`Choice ${index + 1}`}
+              onClick={() => handleRandomChoice(choice)}
+              className="cursor-pointer w-16 h-16"
+            />
+
+            <div>
+              {choice.name}
+            </div>
+          </div>
         ))}
-        <div className="mt-4">
+
+        <div className=' flex flex-col justify-center items-center'>
+          <button onClick={handleAddRow} >
+            <img src={wattimg} className='w-[86px]'/>
+          </button>
+          <div>Personnalisé</div>            
+        </div>
+        {/* <div className="mt-4">
           <button onClick={handleAddRow} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
             Personnalisé
-          </button>
-        </div>
+          </button>            
+        </div> */}
       </div>
 
       {rows.length > 0 && rows.map((row, index) => (
